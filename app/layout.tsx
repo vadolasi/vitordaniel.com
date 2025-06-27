@@ -32,7 +32,6 @@ export default function RootLayout({
         <Script
           src="https://umami.vitordaniel.com/script.js"
           data-website-id="144e064e-3088-45fb-b202-c0cadc65cac9"
-          strategy="worker"
         />
       </body>
     </html>
