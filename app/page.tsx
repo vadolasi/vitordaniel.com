@@ -221,7 +221,8 @@ export default function Home() {
     name: "Vitor Daniel",
     url: "https://vitordaniel.com",
     image: "https://github.com/vadolasi.png",
-    jobTitle: "Desenvolvedor Full Stack"
+    jobTitle: "Desenvolvedor Full Stack",
+    additionalName: "vadolasi"
   }
 
   return (
