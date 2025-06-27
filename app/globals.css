@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@plugin "daisyui" {
+	themes: false;
+}
+
+@plugin "./catppuccinTheme.mocha.ts";
+
+@theme {
+	--animate-gradient-to-right: gradient-to-right 6s linear infinite alternate;
+	--animate-gradient-to-bottom-right: gradient-to-bottom-right 6s linear
+		infinite alternate;
+
+	@keyframes gradient-to-right {
+		0% {
+			background-position: 0% center;
+		}
+		100% {
+			background-position: 100% center;
+		}
+	}
+
+	@keyframes gradient-to-bottom-right {
+		0% {
+			background-position: 0% 0%;
+		}
+		100% {
+			background-position: 100% 100%;
+		}
+	}
+}
