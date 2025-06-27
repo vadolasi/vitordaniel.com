@@ -23,45 +23,26 @@ import {
 import { cn } from "@/lib/utils"
 import { Dock, DockIcon } from "@/components/magicui/dock"
 
-const Icons: Record<string, (props: React.HTMLAttributes<SVGElement>) => React.JSX.Element> = {
+const Icons: Record<
+  string,
+  (props: React.HTMLAttributes<SVGElement>) => React.JSX.Element
+> = {
   gitHub: (props) => (
-    <FaGithub
-      {...props}
-      title="GitHub"
-      aria-label="GitHub"
-      role="img"
-    />
+    <FaGithub {...props} title="GitHub" aria-label="GitHub" role="img" />
   ),
   linkedin: (props) => (
-    <FaLinkedin
-      {...props}
-      title="GitHub"
-      aria-label="GitHub"
-      role="img"
-    />
+    <FaLinkedin {...props} title="GitHub" aria-label="GitHub" role="img" />
   ),
   email: (props) => (
-    <FaEnvelope
-      {...props}
-      title="GitHub"
-      aria-label="GitHub"
-      role="img"
-    />
+    <FaEnvelope {...props} title="GitHub" aria-label="GitHub" role="img" />
   ),
   whatsapp: (props) => (
-    <FaWhatsapp
-      {...props}
-      title="GitHub"
-      aria-label="GitHub"
-      role="img"
-    />
+    <FaWhatsapp {...props} title="GitHub" aria-label="GitHub" role="img" />
   )
 }
 
 const DATA = {
-  navbar: [
-    { href: "#", icon: FaHome, label: "Home" }
-  ],
+  navbar: [{ href: "#", icon: FaHome, label: "Home" }],
   contact: {
     social: {
       GitHub: {
@@ -102,7 +83,11 @@ export default function LinksDock() {
                     aria-label={item.label}
                     target="_blank"
                     className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon", className: "hover:bg-neutral" }),
+                      buttonVariants({
+                        variant: "ghost",
+                        size: "icon",
+                        className: "hover:bg-neutral"
+                      }),
                       "size-12 rounded-full"
                     )}
                   >
@@ -125,7 +110,11 @@ export default function LinksDock() {
                     aria-label={social.name}
                     target="_blank"
                     className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon", className: "hover:bg-neutral" }),
+                      buttonVariants({
+                        variant: "ghost",
+                        size: "icon",
+                        className: "hover:bg-neutral"
+                      }),
                       "size-12 rounded-full"
                     )}
                   >

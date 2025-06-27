@@ -1,28 +1,62 @@
+import type { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
-import photo from "@/assets/foto.png"
-import LinksDock from "./components/Dock"
-import { BlurFade } from "@/components/magicui/blur-fade"
-import { SiJavascript, SiTypescript, SiNodedotjs, SiPython, SiMongodb, SiPostgresql, SiAmazonwebservices, SiReact, SiNestjs, SiNextdotjs, SiTailwindcss, SiDaisyui, SiShadcnui, SiReacthookform, SiReactquery, SiFastapi, SiRedis, SiDocker, SiExpress } from "react-icons/si"
 import { GrMysql } from "react-icons/gr"
+import {
+  SiAmazonwebservices,
+  SiDaisyui,
+  SiDocker,
+  SiExpress,
+  SiFastapi,
+  SiJavascript,
+  SiMongodb,
+  SiNestjs,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiReacthookform,
+  SiReactquery,
+  SiRedis,
+  SiShadcnui,
+  SiTailwindcss,
+  SiTypescript
+} from "react-icons/si"
+import type { Person, WithContext } from "schema-dts"
+import photo from "@/assets/foto.png"
+import goliImage from "@/assets/goli.png"
+import inbcmImage from "@/assets/inbcm.jpg"
+import { BlurFade } from "@/components/magicui/blur-fade"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
-import inbcmImage from "@/assets/inbcm.jpg"
-import goliImage from "@/assets/goli.png"
-import type { StaticImport } from "next/dist/shared/lib/get-img-props"
+import LinksDock from "./components/Dock"
 
-const BLUR_FADE_DELAY = 0.04;
+const BLUR_FADE_DELAY = 0.4
 
-const Icons: Record<string, (props: React.HTMLAttributes<SVGElement>) => React.JSX.Element> = {
+const Icons: Record<
+  string,
+  (props: React.HTMLAttributes<SVGElement>) => React.JSX.Element
+> = {
   javascript: (props) => (
-    <SiJavascript {...props} title="JavaScript" aria-label="JavaScript" role="img" />
+    <SiJavascript
+      {...props}
+      title="JavaScript"
+      aria-label="JavaScript"
+      role="img"
+    />
   ),
   typescript: (props) => (
-    <SiTypescript {...props} title="TypeScript" aria-label="TypeScript" role="img" />
+    <SiTypescript
+      {...props}
+      title="TypeScript"
+      aria-label="TypeScript"
+      role="img"
+    />
   ),
   nodejs: (props) => (
     <SiNodedotjs {...props} title="Node.js" aria-label="Node.js" role="img" />
@@ -34,7 +68,12 @@ const Icons: Record<string, (props: React.HTMLAttributes<SVGElement>) => React.J
     <SiMongodb {...props} title="MongoDB" aria-label="MongoDB" role="img" />
   ),
   postgresql: (props) => (
-    <SiPostgresql {...props} title="PostgreSQL" aria-label="PostgreSQL" role="img" />
+    <SiPostgresql
+      {...props}
+      title="PostgreSQL"
+      aria-label="PostgreSQL"
+      role="img"
+    />
   ),
   mysql: (props) => (
     <GrMysql {...props} title="MySQL" aria-label="MySQL" role="img" />
@@ -52,79 +91,96 @@ const Icons: Record<string, (props: React.HTMLAttributes<SVGElement>) => React.J
     <SiNextdotjs {...props} title="Next.js" aria-label="Next.js" role="img" />
   ),
   tailwindcss: (props) => (
-    <SiTailwindcss {...props} title="Tailwind CSS" aria-label="Tailwind CSS" role="img" />
+    <SiTailwindcss
+      {...props}
+      title="Tailwind CSS"
+      aria-label="Tailwind CSS"
+      role="img"
+    />
   ),
   daisyui: (props) => (
     <SiDaisyui {...props} title="DaisyUI" aria-label="DaisyUI" role="img" />
   ),
   shadcnui: (props) => (
-    <SiShadcnui {...props} title="Shadcn UI" aria-label="Shadcn UI" role="img" />
+    <SiShadcnui
+      {...props}
+      title="Shadcn UI"
+      aria-label="Shadcn UI"
+      role="img"
+    />
   ),
   reactHookForm: (props) => (
-    <SiReacthookform {...props} title="React Hook Form"
+    <SiReacthookform
+      {...props}
+      title="React Hook Form"
       aria-label="React Hook Form"
       role="img"
     />
   ),
   reactQuery: (props) => (
-    <SiReactquery {...props} title="React Query"
+    <SiReactquery
+      {...props}
+      title="React Query"
       aria-label="React Query"
       role="img"
     />
   ),
   fastapi: (props) => (
-    <SiFastapi {...props} title="FastAPI"
-      aria-label="FastAPI"
-      role="img"
-    />
+    <SiFastapi {...props} title="FastAPI" aria-label="FastAPI" role="img" />
   ),
   redis: (props) => (
-    <SiRedis {...props} title="Redis"
-      aria-label="Redis"
-      role="img"
-    />
+    <SiRedis {...props} title="Redis" aria-label="Redis" role="img" />
   ),
   docker: (props) => (
-    <SiDocker {...props} title="Docker"
-      aria-label="Docker"
-      role="img"
-    />
+    <SiDocker {...props} title="Docker" aria-label="Docker" role="img" />
   ),
   express: (props) => (
-    <SiExpress {...props} title="Express.js"
+    <SiExpress
+      {...props}
+      title="Express.js"
       aria-label="Express.js"
       role="img"
     />
   )
 }
 
-const skills: Record<string, (props: React.HTMLAttributes<SVGElement>) => React.JSX.Element> = {
-  "JavaScript": Icons.javascript,
-  "TypeScript": Icons.typescript,
-  "Python": Icons.python,
+const skills: Record<
+  string,
+  (props: React.HTMLAttributes<SVGElement>) => React.JSX.Element
+> = {
+  JavaScript: Icons.javascript,
+  TypeScript: Icons.typescript,
+  Python: Icons.python,
   "Node.js": Icons.nodejs,
   "React.js": Icons.react,
-  "PostgreSQL": Icons.postgresql,
-  "MongoDB": Icons.mongodb,
-  "MySQL": Icons.mysql,
-  "Redis": Icons.redis,
-  "Docker": Icons.docker,
-  "AWS": Icons.aws,
+  PostgreSQL: Icons.postgresql,
+  MongoDB: Icons.mongodb,
+  MySQL: Icons.mysql,
+  Redis: Icons.redis,
+  Docker: Icons.docker,
+  AWS: Icons.aws,
   "Tailwind CSS": Icons.tailwindcss,
   "Next.js": Icons.nextjs,
   "Express.js": Icons.express,
-  "NestJS": Icons.nestjs,
-  "DaisyUI": Icons.daisyui,
+  NestJS: Icons.nestjs,
+  DaisyUI: Icons.daisyui,
   "Shadcn UI": Icons.shadcnui,
   "React Hook Form": Icons.reactHookForm,
   "React Query": Icons.reactQuery,
-  "FastAPI": Icons.fastapi
+  FastAPI: Icons.fastapi
 }
 
-const projects: { name: string; description: string; url: string, image: string | StaticImport, skills: ((props: React.HTMLAttributes<SVGElement>) => React.JSX.Element)[] }[] = [
+const projects: {
+  name: string
+  description: string
+  url: string
+  image: string | StaticImport
+  skills: ((props: React.HTMLAttributes<SVGElement>) => React.JSX.Element)[]
+}[] = [
   {
     name: "Inventário Nacional de Bens Culturais Musealizados (INBCM)",
-    description: "Ferramenta para o Instituto Brasileiro de Museus (IBRAM) catalogar e analisar os acervos de todos os mais de 3 mil museus dos país",
+    description:
+      "Ferramenta para o Instituto Brasileiro de Museus (IBRAM) catalogar e analisar os acervos de todos os mais de 3 mil museus dos país",
     url: "https://nocs.ifrn.edu.br/nocs-lab-apresenta-inovacoes-no-forum-nacional-de-museus-com-os-projetos-inbcm-e-obatala/",
     image: inbcmImage,
     skills: [
@@ -140,7 +196,8 @@ const projects: { name: string; description: string; url: string, image: string 
   },
   {
     name: "Glossário Online em Libras para Informática (GOLI)",
-    description: "Glossário online em libras para facilitar o aprendizado de termos técnicos para pessoas surdas",
+    description:
+      "Glossário online em libras para facilitar o aprendizado de termos técnicos para pessoas surdas",
     url: "https://ojs.studiespublicacoes.com.br/ojs/index.php/cadped/article/view/13995",
     image: goliImage,
     skills: [
@@ -158,8 +215,25 @@ const projects: { name: string; description: string; url: string, image: string 
 ]
 
 export default function Home() {
+  const jsonLd: WithContext<Person> = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Vitor Daniel",
+    url: "https://vitordaniel.com",
+    image: "https://github.com/vadolasi.png",
+    jobTitle: "Desenvolvedor Full Stack"
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Needs to be escaped for JSON-LD
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c")
+        }}
+      />
+
       <div className="fixed bottom-10 left-0 w-full z-50">
         <LinksDock />
       </div>
@@ -238,11 +312,15 @@ export default function Home() {
                 />
                 <CardHeader>
                   <CardTitle className="text-base">{project.name}</CardTitle>
-                  <CardDescription className="text-sm">{project.description}</CardDescription>
+                  <CardDescription className="text-sm">
+                    {project.description}
+                  </CardDescription>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {project.skills.map((SkillIcon, idx) => (
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                      <SkillIcon key={idx} className="size-5 text-primary" />
+                    {project.skills.map((SkillIcon) => (
+                      <SkillIcon
+                        key={SkillIcon.name}
+                        className="size-5 text-primary"
+                      />
                     ))}
                   </div>
                 </CardHeader>
