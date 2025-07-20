@@ -170,6 +170,37 @@ const skills: Record<
   FastAPI: Icons.fastapi
 }
 
+const skillsGrouped: Record<
+  string,
+  ((props: React.HTMLAttributes<SVGElement>) => React.JSX.Element)[]
+> = {
+  "Linguagens de Programação": [
+    skills["JavaScript"],
+    skills["TypeScript"],
+    skills["Python"]
+  ],
+  "Back-end": [
+    skills["Node.js"],
+    skills["Express.js"],
+    skills["NestJS"],
+    skills["FastAPI"]
+  ],
+  "Front-end": [skills["React.js"], skills["Next.js"]],
+  "Banco de Dados": [
+    skills["PostgreSQL"],
+    skills["MongoDB"],
+    skills["MySQL"]
+  ],
+  DevOps: [skills["Docker"], skills["AWS"], skills["Redis"]],
+  UI: [
+    skills["Tailwind CSS"],
+    skills["DaisyUI"],
+    skills["Shadcn UI"],
+    skills["React Hook Form"],
+    skills["React Query"]
+  ]
+}
+
 const projects: {
   name: string
   description: string
@@ -287,57 +318,58 @@ export default function Home() {
           </p>
 
           <h2>Principais tecnologias</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-4">
-            {Object.entries(skills).map(([name, Icon]) => (
-              <div key={name} className="flex flex-col items-center">
-                <Icon className="size-10 text-primary mb-2" />
-                <span className="text-xs text-center">{name}</span>
+
+          {Object.entries(skillsGrouped).map(([category, icons]) => (
+            <div key={category}>
+              <h4>{category}</h4>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {icons.map((Icon) => (
+                  <Icon key={Icon.name} className="size-5 text-primary" />
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="flex flex-col items-center justify-center min-h-screen px-10 py-30 w-full bg-base-200">
-        <div className="md:w-2/3 lg:w-1/2">
+        <div className="p-10 w-full lg:max-w-6xl">
           <h1 className="text-5xl font-black">Meus projetos</h1>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
-            {projects.map((project) => (
-              <Card key={project.name} className="pt-0">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  width={600}
-                  height={337}
-                  className="rounded-t-xl object-cover aspect-16/9 w-full m-0!"
-                />
-                <CardHeader>
-                  <CardTitle className="text-base">{project.name}</CardTitle>
-                  <CardDescription className="text-sm">
-                    {project.description}
-                  </CardDescription>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {project.skills.map((SkillIcon) => (
-                      <SkillIcon
-                        key={SkillIcon.name}
-                        className="size-5 text-primary"
-                      />
-                    ))}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline text-sm font-medium mt-2"
-                  >
-                    Mais informações
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {projects.map((project) => (
+            <Card key={project.name} className="p-0 w-full">
+              <Image
+                src={project.image}
+                alt={project.name}
+                width={600}
+                height={337}
+                className="rounded-t-xl object-cover aspect-16/9 w-full m-0!"
+              />
+              <CardHeader>
+                <CardTitle className="text-base">{project.name}</CardTitle>
+                <CardDescription className="text-sm">
+                  {project.description}
+                </CardDescription>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {project.skills.map((SkillIcon) => (
+                    <SkillIcon
+                      key={SkillIcon.name}
+                      className="size-5 text-primary"
+                    />
+                  ))}
+                </div>
+              </CardHeader>
+              <CardContent>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline text-sm font-medium mt-2"
+                >
+                  Mais informações
+                </a>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
     </>
