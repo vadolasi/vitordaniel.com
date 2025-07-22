@@ -30,8 +30,9 @@ export default function RootLayout({
       >
         {children}
         <Script
+          defer
           src="https://umami.vitordaniel.com/script.js"
-          data-website-id="144e064e-3088-45fb-b202-c0cadc65cac9"
+          data-website-id="df133723-4642-4634-bbb9-b839a0f205fa"
         />
       </body>
     </html>
