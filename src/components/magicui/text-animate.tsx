@@ -1,8 +1,13 @@
 "use client"
 
+import {
+  AnimatePresence,
+  type MotionProps,
+  motion,
+  type Variants
+} from "motion/react"
+import { type ElementType, memo } from "react"
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion, MotionProps, Variants } from "motion/react"
-import { ElementType, memo } from "react"
 
 type AnimationType = "text" | "word" | "character" | "line"
 type AnimationVariant =
@@ -389,6 +394,7 @@ const TextAnimateBase = ({
       >
         {segments.map((segment, i) => (
           <motion.span
+            // biome-ignore lint/suspicious/noArrayIndexKey: Its not a problem here
             key={`${by}-${segment}-${i}`}
             variants={finalVariants.item}
             custom={i * staggerTimings[by]}

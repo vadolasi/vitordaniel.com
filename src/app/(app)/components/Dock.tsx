@@ -1,17 +1,15 @@
 "use client"
 
-import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
-  FaWhatsapp,
-  FaHome,
-  FaBlog
-} from "react-icons/fa"
-
 import Link from "next/link"
-import React from "react"
-
+import type React from "react"
+import {
+  FaEnvelope,
+  FaGithub,
+  FaHome,
+  FaLinkedin,
+  FaWhatsapp
+} from "react-icons/fa"
+import { Dock, DockIcon } from "@/components/magicui/dock"
 import { buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -21,7 +19,6 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
-import { Dock, DockIcon } from "@/components/magicui/dock"
 
 const Icons: Record<
   string,

@@ -186,11 +186,7 @@ const skillsGrouped: Record<
     skills["FastAPI"]
   ],
   "Front-end": [skills["React.js"], skills["Next.js"]],
-  "Banco de Dados": [
-    skills["PostgreSQL"],
-    skills["MongoDB"],
-    skills["MySQL"]
-  ],
+  "Banco de Dados": [skills["PostgreSQL"], skills["MongoDB"], skills["MySQL"]],
   DevOps: [skills["Docker"], skills["AWS"], skills["Redis"]],
   UI: [
     skills["Tailwind CSS"],
@@ -242,6 +238,27 @@ const projects: {
       skills["React Query"],
       skills["Tailwind CSS"]
     ]
+  },
+  {
+    name: "Codelabs",
+    description:
+      "Plataforma de cursos online com foco em desenvolvimento web, oferecendo uma experiência de aprendizado interativa e prática.",
+    url: "https://codelabs.vitordaniel.com",
+    image: "https://codelabs.vitordaniel.com/og-image.png",
+    skills: [
+      skills["TypeScript"],
+      skills["React.js"],
+      skills["Next.js"],
+      skills["Node.js"],
+      skills["Express.js"],
+      skills["PostgreSQL"],
+      skills["Redis"],
+      skills["Docker"],
+      skills["Tailwind CSS"],
+      skills["Shadcn UI"],
+      skills["React Hook Form"],
+      skills["React Query"]
+    ]
   }
 ]
 
@@ -252,7 +269,7 @@ export default function Home() {
     name: "Vitor Daniel",
     url: "https://vitordaniel.com",
     image: "https://github.com/vadolasi.png",
-    jobTitle: "Desenvolvedor Full Stack",
+    jobTitle: "Desenvolvedor Web Full Stack",
     additionalName: "vadolasi"
   }
 
@@ -335,41 +352,43 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center min-h-screen px-10 py-30 w-full bg-base-200">
         <div className="p-10 w-full lg:max-w-6xl">
           <h1 className="text-5xl font-black">Meus projetos</h1>
-          {projects.map((project) => (
-            <Card key={project.name} className="p-0 w-full">
-              <Image
-                src={project.image}
-                alt={project.name}
-                width={600}
-                height={337}
-                className="rounded-t-xl object-cover aspect-16/9 w-full m-0!"
-              />
-              <CardHeader>
-                <CardTitle className="text-base">{project.name}</CardTitle>
-                <CardDescription className="text-sm">
-                  {project.description}
-                </CardDescription>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.skills.map((SkillIcon) => (
-                    <SkillIcon
-                      key={SkillIcon.name}
-                      className="size-5 text-primary"
-                    />
-                  ))}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-sm font-medium mt-2"
-                >
-                  Mais informações
-                </a>
-              </CardContent>
-            </Card>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+            {projects.map((project) => (
+              <Card key={project.name} className="p-0 w-full">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  width={600}
+                  height={337}
+                  className="rounded-t-xl object-cover aspect-16/9 w-full m-0!"
+                />
+                <CardHeader>
+                  <CardTitle className="text-base">{project.name}</CardTitle>
+                  <CardDescription className="text-sm">
+                    {project.description}
+                  </CardDescription>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {project.skills.map((SkillIcon) => (
+                      <SkillIcon
+                        key={SkillIcon.name}
+                        className="size-5 text-primary"
+                      />
+                    ))}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline text-sm font-medium mt-2"
+                  >
+                    Mais informações
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
     </>
