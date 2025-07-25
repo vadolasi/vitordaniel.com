@@ -3,9 +3,9 @@
 import Link from "next/link"
 import type React from "react"
 import {
+  FaBlog,
   FaEnvelope,
   FaGithub,
-  FaHome,
   FaLinkedin,
   FaWhatsapp
 } from "react-icons/fa"
@@ -39,7 +39,7 @@ const Icons: Record<
 }
 
 const DATA = {
-  navbar: [{ href: "#", icon: FaHome, label: "Home" }],
+  navbar: [{ href: "/blog", icon: FaBlog, label: "Blog" }],
   contact: {
     social: {
       GitHub: {
@@ -78,7 +78,6 @@ export default function LinksDock() {
                   <Link
                     href={item.href}
                     aria-label={item.label}
-                    target="_blank"
                     className={cn(
                       buttonVariants({
                         variant: "ghost",

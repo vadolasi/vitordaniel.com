@@ -1,20 +1,40 @@
-import RSS from "rss"
+import { Feed } from "feed"
+import { getPayload } from "payload"
+import config from "@/payload.config"
+import { getServerSideURL } from "@/utils/getURL"
 
 export async function GET() {
-  const feed = new RSS({
-    title: "Vitor Daniel",
-    description:
-      "Desenvolvedor Full Stack, apaixonado por tecnologia e inovação.",
-    site_url: "https://vitordaniel.com",
-    feed_url: `https://vitordaniel.com/rss.xml`,
-    copyright: `${new Date().getFullYear()} Vitor Daniel`,
-    language: "pt-BR",
-    pubDate: new Date()
+  const url = getServerSideURL()
+
+  const payload = await getPayload({ config })
+
+  const feed = new Feed({
+    title: "Vitor Daniel - Blog",
+    description: "A blog about web development, programming, and technology.",
+    id: url,
+    link: url,
+    copyright: `${new Date().getFullYear()} ${new URL(url).hostname}`
   })
 
-  return new Response(feed.xml(), {
+  const posts = await payload.find({
+    collection: "blog_posts",
+    limit: 0,
+    where: {}
+  })
+
+  posts.docs.forEach((post) => {
+    feed.addItem({
+      title: post.title,
+      id: `${url}/blog/${post.slug}`,
+      link: `${url}/blog/${post.slug}`,
+      description: post.description,
+      date: new Date(post.publishedDate)
+    })
+  })
+
+  return new Response(feed.rss2(), {
     headers: {
-      "Content-Type": "application/atom+xml; charset=utf-8"
+      "Content-Type": "application/rss+xml"
     }
   })
 }

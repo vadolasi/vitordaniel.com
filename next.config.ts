@@ -3,11 +3,10 @@ import { withPayload } from "@payloadcms/next/withPayload"
 import { withSentryConfig } from "@sentry/nextjs"
 import type { NextConfig } from "next"
 
-// import utwm from "unplugin-tailwindcss-mangle"
-
 const nextConfig: NextConfig = {
   experimental: {
-    reactCompiler: true
+    reactCompiler: true,
+    cacheComponents: true
   },
   images: {
     remotePatterns: [
@@ -16,12 +15,6 @@ const nextConfig: NextConfig = {
         hostname: "**"
       }
     ]
-  },
-  webpack: (config) => {
-    if (process.env.NODE_ENV === "production") {
-      // config.plugins?.push(utwm.webpack())
-    }
-    return config
   }
 }
 
