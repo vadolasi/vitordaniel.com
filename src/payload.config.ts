@@ -46,7 +46,7 @@ export default buildConfig({
       collections: ["blog_posts"],
       generateTitle: ({ doc }) => `${doc.title} - vitordaniel.com`,
       generateDescription: ({ doc }) => doc.description
-    }),
+    })
   ],
 
   sharp

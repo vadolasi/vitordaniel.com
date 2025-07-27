@@ -19,21 +19,15 @@ export const generateMetadata = ({
 }: Args): Promise<Metadata> =>
   generatePageMetadata({ config, params, searchParams })
 
-async function PageContent({ params, searchParams }: Args) {
-  return (
-    <RootPage
-      config={config}
-      params={params}
-      searchParams={searchParams}
-      importMap={importMap}
-    />
-  )
-}
-
 export default function Page({ params, searchParams }: Args) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <PageContent params={params} searchParams={searchParams} />
+      <RootPage
+        config={config}
+        params={params}
+        searchParams={searchParams}
+        importMap={importMap}
+      />
     </Suspense>
   )
 }

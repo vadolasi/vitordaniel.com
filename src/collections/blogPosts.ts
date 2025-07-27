@@ -36,7 +36,7 @@ const BlogPostsCollection: CollectionConfig = {
     afterChange: [
       async ({ previousDoc }) => {
         revalidateTag("blog_posts")
-        
+
         if (previousDoc.slug) {
           revalidateTag(`blog_post:${previousDoc.slug}`)
         }
