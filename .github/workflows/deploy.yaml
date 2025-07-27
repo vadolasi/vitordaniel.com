@@ -5,6 +5,9 @@ on: push
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URI: ${{ secrets.DATABASE_URI }}
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
