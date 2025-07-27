@@ -30,7 +30,7 @@
 		"graphql": "^16.11.0",
 		"lucide-react": "^0.523.0",
 		"motion": "^12.23.9",
-		"next": "15.4.2-canary.17",
+		"next": "15.4.2-canary.18",
 		"payload": "^3.48.0",
 		"pg": "^8.16.3",
 		"react": "^19.1.0",
