@@ -56,11 +56,6 @@ const DATA = {
         name: "Send Email",
         url: "mailto:vitor036daniel@gmail.com",
         icon: Icons.email
-      },
-      WhatsApp: {
-        name: "WhatsApp",
-        url: "https://wa.me/5584981437676",
-        icon: Icons.whatsapp
       }
     }
   }

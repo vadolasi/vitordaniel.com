@@ -309,6 +309,7 @@ export default function Home() {
               width={600}
               className="sm:max-w-[80vw] md:max-w-[60vw]"
               alt="Vitor Daniel"
+              layout="responsive"
             />
           </BlurFade>
         </div>
@@ -361,6 +362,7 @@ export default function Home() {
                   width={600}
                   height={337}
                   className="rounded-t-xl object-cover aspect-16/9 w-full m-0!"
+                  layout="responsive"
                 />
                 <CardHeader>
                   <CardTitle className="text-base">{project.name}</CardTitle>

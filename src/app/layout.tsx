@@ -2,6 +2,7 @@ import * as Sentry from "@sentry/nextjs"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
+import { getServerSideURL } from "@/utils/getURL"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,11 +15,13 @@ const geistMono = Geist_Mono({
 })
 
 export function generateMetadata(): Metadata {
+  const url = getServerSideURL()
+
   return {
     title: "Vitor Daniel",
     description:
       "Desenvolvedor Full Stack, apaixonado por tecnologia e inovação.",
-    metadataBase: new URL("https://vitordaniel.com"),
+    metadataBase: new URL(url),
     keywords: [
       "Vitor Daniel",
       "Desenvolvedor Full Stack",

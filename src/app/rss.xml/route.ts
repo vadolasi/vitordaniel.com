@@ -27,7 +27,6 @@ export async function GET() {
       title: post.title,
       id: `${url}/blog/${post.slug}`,
       link: `${url}/blog/${post.slug}`,
-      description: post.description,
       date: new Date(post.publishedDate)
     })
   })

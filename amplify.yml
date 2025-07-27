@@ -3,11 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm install -g pnpm
-        - pnpm install
+        - curl -fsSL https://bun.sh/install | bash
+        - source /root/.bashrc
+        - bun install
     build:
       commands:
-        - pnpm run build
+        - bun run build
   artifacts:
     baseDirectory: .next
     files:

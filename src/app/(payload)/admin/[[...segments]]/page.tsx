@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import config from "@/payload.config"
 import { importMap } from "../importMap"
+import { connection } from "next/server"
 
 type Args = {
   params: Promise<{
