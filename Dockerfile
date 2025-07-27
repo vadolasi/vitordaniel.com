@@ -12,7 +12,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN bun run build
+RUN --mount=type=secret,id=DATABASE_URI \
+    --mount=type=secret,id=PAYLOAD_SECRET \
+    export DATABASE_URI=$(cat /run/secrets/DATABASE_URI) && \
+    export PAYLOAD_SECRET=$(cat /run/secrets/PAYLOAD_SECRET) && \
+    bun run build
 
 FROM base AS runner
 WORKDIR /app

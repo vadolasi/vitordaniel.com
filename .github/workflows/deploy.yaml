@@ -27,6 +27,9 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: registry.vitordaniel.com/vitordaniel.com:latest
+          secrets: |
+            "DATABASE_URI=${{ secrets.DATABASE_URI }}"
+            "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}"
 
       - name: Dokploy Deployment
         uses: benbristow/dokploy-deploy-action@0.0.1
