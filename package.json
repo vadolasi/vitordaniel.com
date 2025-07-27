@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"@nouance/payload-better-fields-plugin": "^2.0.2",
-		"@payloadcms/db-postgres": "^3.49.0",
+		"@payloadcms/db-mongodb": "^3.49.0",
 		"@payloadcms/email-resend": "^3.49.0",
 		"@payloadcms/next": "^3.49.0",
 		"@payloadcms/plugin-sentry": "^3.49.0",
@@ -32,7 +32,6 @@
 		"motion": "^12.23.9",
 		"next": "15.4.2-canary.18",
 		"payload": "^3.49.0",
-		"pg": "^8.16.3",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"react-icons": "^5.5.0",
@@ -57,5 +56,10 @@
 		"tw-animate-css": "^1.3.6",
 		"typescript": "^5.8.3",
 		"unplugin-tailwindcss-mangle": "^4.1.2"
-	}
+	},
+	"trustedDependencies": [
+		"@sentry/cli",
+		"@tailwindcss/oxide",
+		"aws-sdk"
+	]
 }

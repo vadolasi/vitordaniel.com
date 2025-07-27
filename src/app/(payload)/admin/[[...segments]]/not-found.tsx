@@ -1,8 +1,6 @@
-/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
-/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
-
 import { generatePageMetadata, NotFoundPage } from "@payloadcms/next/views"
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import config from "@/payload.config"
 import { importMap } from "../importMap"
 
@@ -21,7 +19,17 @@ export const generateMetadata = ({
 }: Args): Promise<Metadata> =>
   generatePageMetadata({ config, params, searchParams })
 
-const NotFound = ({ params, searchParams }: Args) =>
-  NotFoundPage({ config, params, searchParams, importMap })
+function NotFound({ params, searchParams }: Args) {
+  return (
+    <Suspense>
+      <NotFoundPage
+        config={config}
+        params={params}
+        searchParams={searchParams}
+        importMap={importMap}
+      />
+    </Suspense>
+  )
+}
 
 export default NotFound

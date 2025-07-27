@@ -1,3 +1,3 @@
-import { defineConfig } from 'tailwindcss-patch'
+import { defineConfig } from "tailwindcss-patch"
 
 export default defineConfig({})

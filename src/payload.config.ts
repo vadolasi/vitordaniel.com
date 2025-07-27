@@ -1,11 +1,10 @@
-import { postgresAdapter } from "@payloadcms/db-postgres"
+import { mongooseAdapter } from "@payloadcms/db-mongodb"
 import { resendAdapter } from "@payloadcms/email-resend"
 import { sentryPlugin } from "@payloadcms/plugin-sentry"
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import * as Sentry from "@sentry/nextjs"
 import { buildConfig } from "payload"
-import pg from "pg"
 import sharp from "sharp"
 import BlogPostsCollection from "@/collections/blogPosts"
 import ProjectsCollection from "@/collections/projects"
@@ -27,24 +26,21 @@ export default buildConfig({
 
   secret: process.env.PAYLOAD_SECRET!,
 
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI!
-    },
-    pg
+  db: mongooseAdapter({
+    url: process.env.DATABASE_URI!
   }),
 
   email: resendAdapter({
     defaultFromAddress: "email@vitordaniel.com",
     defaultFromName: "Vitor Daniel",
-    apiKey: process.env.RESEND_API_KEY || ""
+    apiKey: process.env.RESEND_API_KEY!
   }),
 
   plugins: [
     sentryPlugin({ Sentry }),
     seoPlugin({
       collections: ["blog_posts"],
-      generateTitle: ({ doc }) => `${doc.title} - vitordaniel.com`,
+      generateTitle: ({ doc }) => doc.title,
       generateDescription: ({ doc }) => doc.description
     })
   ],

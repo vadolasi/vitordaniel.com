@@ -2,14 +2,14 @@ import withBundleAnalyzer from "@next/bundle-analyzer"
 import { withPayload } from "@payloadcms/next/withPayload"
 import { withSentryConfig } from "@sentry/nextjs"
 import type { NextConfig } from "next"
-import utwm from "unplugin-tailwindcss-mangle/webpack"
+
+// import utwm from "unplugin-tailwindcss-mangle/webpack"
 
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
     cacheComponents: true,
-    inlineCss: true,
-    useLightningcss: true
+    inlineCss: true
   },
   images: {
     remotePatterns: [
@@ -25,10 +25,13 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
+  /*
   webpack: (config) => {
     config.plugins?.push(utwm())
     return config
-  }
+  },
+  */
+  output: "standalone"
 }
 
 const config = withSentryConfig(withPayload(nextConfig), {
