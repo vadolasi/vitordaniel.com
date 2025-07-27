@@ -1,12 +1,10 @@
-import { unstable_cacheTag as cacheTag } from "next/cache"
 import Link from "next/link"
 import { getPayload } from "payload"
+import { Suspense } from "react"
 import config from "@/payload.config"
 
-async function getBlogPosts(page: number = 1) {
-  "use cache"
-
-  cacheTag("blog-posts")
+async function getBlogPosts(pagePromise: Promise<number>) {
+  const page = await pagePromise
 
   const payload = await getPayload({
     config
@@ -21,6 +19,7 @@ async function getBlogPosts(page: number = 1) {
   return {
     posts: docs,
     pagination: {
+      page,
       hasNextPage,
       hasPrevPage,
       totalDocs
@@ -28,25 +27,27 @@ async function getBlogPosts(page: number = 1) {
   }
 }
 
-export default async function Page({
+async function PageContent({
   searchParams
 }: {
   searchParams: Promise<{ [key: string]: string | string[] }>
 }) {
-  const params = await searchParams
+  const pagePromise = searchParams.then((params) => {
+    let page = 1
+    if (params.page && typeof params.page === "string") {
+      page = parseInt(params.page, 10)
+    }
+    return page
+  })
 
-  let page = 1
-  if (params.page && typeof params.page === "string") {
-    page = parseInt(params.page, 10)
-  }
-
-  const { posts, pagination } = await getBlogPosts(page)
-
+  const { posts, pagination } = await getBlogPosts(pagePromise)
 
   return (
     <>
       <h1 className="text-2xl font-bold mb-2">Blog</h1>
-      <span className="text-sm text-gray-500">{pagination.totalDocs} postagens</span>
+      <span className="text-sm text-gray-500">
+        {pagination.totalDocs} postagens
+      </span>
       <div className="mt-8">
         {posts.map((post) => (
           <div key={post.id}>
@@ -58,12 +59,24 @@ export default async function Page({
       </div>
       <div className="flex mt-4 gap-4">
         {pagination.hasPrevPage && (
-          <Link href={`/blog?page=${page - 1}`}>Anterior</Link>
+          <Link href={`/blog?page=${pagination.page - 1}`}>Anterior</Link>
         )}
         {pagination.hasNextPage && (
-          <Link href={`/blog?page=${page + 1}`}>Prómixo</Link>
+          <Link href={`/blog?page=${pagination.page + 1}`}>Prómixo</Link>
         )}
       </div>
     </>
+  )
+}
+
+export default function Page({
+  searchParams
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] }>
+}) {
+  return (
+    <Suspense fallback={<p>Carregando posts...</p>}>
+      <PageContent searchParams={searchParams} />
+    </Suspense>
   )
 }

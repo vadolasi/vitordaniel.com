@@ -1,8 +1,6 @@
-/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
-/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
-
 import { generatePageMetadata, RootPage } from "@payloadcms/next/views"
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import config from "@/payload.config"
 import { importMap } from "../importMap"
 
@@ -21,7 +19,21 @@ export const generateMetadata = ({
 }: Args): Promise<Metadata> =>
   generatePageMetadata({ config, params, searchParams })
 
-const Page = ({ params, searchParams }: Args) =>
-  RootPage({ config, params, searchParams, importMap })
+async function PageContent({ params, searchParams }: Args) {
+  return (
+    <RootPage
+      config={config}
+      params={params}
+      searchParams={searchParams}
+      importMap={importMap}
+    />
+  )
+}
 
-export default Page
+export default function Page({ params, searchParams }: Args) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent params={params} searchParams={searchParams} />
+    </Suspense>
+  )
+}
