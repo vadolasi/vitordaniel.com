@@ -9,7 +9,7 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         defer
         strategy="afterInteractive"
         src="https://umami.vitordaniel.com/script.js"
-        data-website-id="df133723-4642-4634-bbb9-b839a0f205fa"
+        data-website-id="a84bb8af-0050-47fc-99b0-d96a7256bfb5"
       />
     </>
   )

@@ -1,3 +1,5 @@
+"use cache"
+
 import { unstable_cacheTag as cacheTag } from "next/cache"
 import { notFound } from "next/navigation"
 import { getPayload } from "payload"
@@ -77,13 +79,10 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>
 }) {
-  "use cache"
-
   const { slug } = await params
   cacheTag(`blog-post:${slug}`)
-  const post = await getBlogPost(slug)
 
-  const url = getServerSideURL()
+  const post = await getBlogPost(slug)
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -92,9 +91,13 @@ export default async function Page({
     datePublished: new Date(post.createdAt),
     dateModified: new Date(post.updatedAt),
     author: {
-      type: "Person",
+      "@context": "https://schema.org",
+      "@type": "Person",
       name: "Vitor Daniel",
-      url
+      url: "https://vitordaniel.com",
+      image: "https://github.com/vadolasi.png",
+      jobTitle: "Desenvolvedor Web Full Stack",
+      additionalName: "vadolasi"
     }
   }
 

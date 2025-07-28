@@ -266,7 +266,7 @@ export default function Home() {
   const jsonLd: WithContext<Person> = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Vitor Daniel",
+    name: "Vitor Daniel Lopes dos Santos",
     url: "https://vitordaniel.com",
     image: "https://github.com/vadolasi.png",
     jobTitle: "Desenvolvedor Web Full Stack",
@@ -338,7 +338,7 @@ export default function Home() {
 
           {Object.entries(skillsGrouped).map(([category, icons]) => (
             <div key={category}>
-              <h4>{category}</h4>
+              <h3>{category}</h3>
               <div className="flex flex-wrap gap-2 mt-2">
                 {icons.map((Icon) => (
                   <Icon key={Icon.name} className="size-5 text-primary" />

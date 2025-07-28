@@ -9,12 +9,18 @@ import sharp from "sharp"
 import BlogPostsCollection from "@/collections/blogPosts"
 import ProjectsCollection from "@/collections/projects"
 import TechnologiesCollection from "@/collections/technologies"
+import CategoriesCollection from "./collections/categories"
+import SeriesCollection from "./collections/series"
 
 export default buildConfig({
   editor: lexicalEditor(),
 
+  globals: [],
+
   collections: [
     BlogPostsCollection,
+    CategoriesCollection,
+    SeriesCollection,
     ProjectsCollection,
     TechnologiesCollection
   ],

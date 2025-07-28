@@ -49,7 +49,7 @@
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
 		"babel-plugin-react-compiler": "^19.1.0-rc.2",
-		"daisyui": "^5.0.47",
+		"daisyui": "^5.0.48",
 		"schema-dts": "^1.1.5",
 		"tailwindcss": "^4.1.11",
 		"tailwindcss-patch": "^7.1.4",

@@ -22,7 +22,14 @@ const BlogPostsCollection: CollectionConfig = {
     {
       name: "publishedDate",
       type: "date",
-      required: true
+      required: true,
+      defaultValue: () => new Date().toISOString()
+    },
+    {
+      name: "serie",
+      type: "relationship",
+      relationTo: "series",
+      hasMany: false
     }
   ],
   admin: {
