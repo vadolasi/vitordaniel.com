@@ -14,7 +14,7 @@ const SeriesCollection: CollectionConfig = {
       name: "description",
       type: "text",
       localized: true
-    },
+    }
   ],
   admin: {
     useAsTitle: "title",

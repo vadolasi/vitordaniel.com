@@ -15,7 +15,7 @@ const CategoriesCollection: CollectionConfig = {
       type: "text",
       required: true,
       localized: true
-    },
+    }
   ],
   admin: {
     useAsTitle: "title",

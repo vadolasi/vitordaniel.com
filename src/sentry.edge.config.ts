@@ -1,7 +1,8 @@
 import * as Sentry from "@sentry/nextjs"
 
 Sentry.init({
-  dsn: "https://0132354081914a89a41bc4fb75a4027d@bugsink.vitordaniel.com/1",
-
-  sendDefaultPii: true
+  dsn: "https://ffb5f92369f2ffb2de0a10539e97df89@o4509896925642752.ingest.us.sentry.io/4509896928133120",
+  tracesSampleRate: 1,
+  enableLogs: true,
+  debug: false
 })
