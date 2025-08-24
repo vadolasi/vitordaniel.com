@@ -1,4 +1,4 @@
-import { mongooseAdapter } from "@payloadcms/db-mongodb"
+import { postgresAdapter } from "@payloadcms/db-postgres"
 import { resendAdapter } from "@payloadcms/email-resend"
 import { sentryPlugin } from "@payloadcms/plugin-sentry"
 import { seoPlugin } from "@payloadcms/plugin-seo"
@@ -32,8 +32,10 @@ export default buildConfig({
 
   secret: process.env.PAYLOAD_SECRET!,
 
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI!
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    }
   }),
 
   email: resendAdapter({

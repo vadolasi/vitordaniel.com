@@ -28,16 +28,17 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     config.plugins?.push(utwm())
     return config
-  },
-  output: "standalone"
+  }
 }
 
 const config = withSentryConfig(withPayload(nextConfig), {
-  org: "Unova",
-  project: "vitordaniel.com",
-  sentryUrl: "https://bugsink.vitordaniel.com",
-  authToken: process.env.SENTRY_AUTH_TOKEN,
-  widenClientFileUpload: true
+  org: "unova-nn",
+  project: "javascript-nextjs",
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  tunnelRoute: "/monitoring",
+  disableLogger: true,
+  automaticVercelMonitors: true
 })
 
 export default withBundleAnalyzer({
