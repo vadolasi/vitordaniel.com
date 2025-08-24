@@ -57,6 +57,8 @@
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",
+    "sharp",
+    "esbuild",
     "@sentry/cli",
   ],
   "packages": {
